@@ -58,7 +58,7 @@ $ ./greptile.py -x .py -r Copyright ~/
 ...
 ```
 
-Easy grouping with python `re.sub` syntax :
+Replacement & easy grouping with python `re.sub` syntax :
 ```bash
 $ greptile.py -g "<a href=\"\2\">\1</a>" "\[(.*)\]\((.*)\)" README.md | diff -u README.md -
 ```
