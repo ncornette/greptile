@@ -62,7 +62,6 @@ def sed_i(files, pattern, repl, only_first_occurrence=False):
 
 
 def replace(pattern, repl, root_dir, *types):
-
     sed_i(grep_rl(pattern, root_dir, *types), pattern, repl)
 
 
@@ -98,7 +97,6 @@ def main(pattern, filepath=None, recursive_dir=None, extensions=(), inplace=Fals
     else:
         if not file_list:
             print "Need file argument"
-            p.print_usage()
         for f in file_list:
             if print_list:
                 print f
