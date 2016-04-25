@@ -36,6 +36,8 @@ Because it exclusively uses generators, reptile never allocates big lists, it al
 Search `import` in ./greptile.py :
 ```bash
 $ ./greptile.py import ./greptile.py
+```
+```bash
 import re
 import os
 import sys
@@ -45,6 +47,8 @@ import sys
 Recursively search from `~/` lines in python files containing `Copyright` :
 ```bash
 $ ./greptile.py -x .py -r Copyright ~/
+```
+```bash
 /Users/nic/Library/Android/sdk/platform-tools/systrace/systrace-legacy.py 2:  # Copyright (c) 2011 The Chromium Authors. All rights reserved.
 /Users/nic/Library/Android/sdk/platform-tools/systrace/systrace.py 2:  # Copyright (c) 2011 The Chromium Authors. All rights reserved.
 /Users/nic/Library/Android/sdk/platform-tools/systrace/systrace_agent.py 0:  # Copyright (c) 2015 The Chromium Authors. All rights reserved.
@@ -57,6 +61,8 @@ $ ./greptile.py -x .py -r Copyright ~/
 Easy grouping with python `re.sub` syntax :
 ```bash
 $ greptile.py -g "<a href=\"\2\">\1</a>" "\[(.*)\]\((.*)\)" README.md | diff -u README.md -
+```
+```diff
 --- README.md	2016-04-19 22:37:20.000000000 +0200
 +++ -	2016-04-25 14:54:24.000000000 +0200
 @@ -1,4 +1,4 @@
