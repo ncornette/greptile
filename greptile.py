@@ -3,8 +3,8 @@
 
 import re
 import os
-
 import sys
+import shutil
 
 
 def matches(rexpr, fname):
@@ -54,6 +54,7 @@ def sed_i(files, pattern, repl, only_first_occurrence=False):
                     new_l = count and new_l and l or r.sub(repl, l, count)
                     dest.write(new_l)
 
+        shutil.copymode(f, tmp_f)
         ori_f = f + '.pygrep.ori'
         os.rename(f, ori_f)
         os.rename(tmp_f, f)
