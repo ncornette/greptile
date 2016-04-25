@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='Greptile',
       version='0.8',
@@ -9,5 +9,10 @@ setup(name='Greptile',
       author_email='',
       url='https://github.com/ncornette/greptile',
       packages=[],
-      scripts=['greptile.py']
+      py_modules=['greptile'],
+      entry_points={
+          'console_scripts': [
+              'greptile = greptile:main'
+          ]
+      }
       )

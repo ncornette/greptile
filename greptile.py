@@ -72,8 +72,8 @@ def list_files(root_dir, *types):
                 yield os.path.join(root, f)
 
 
-def main(pattern, filepath=None, recursive_dir=None, extensions=(), inplace=False,
-         print_list=False, replace_first=None, replace_global=None):
+def main_with_args(pattern, filepath=None, recursive_dir=None, extensions=(), inplace=False,
+                   print_list=False, replace_first=None, replace_global=None):
 
     re_compile = re.compile(pattern)
     if recursive_dir:
@@ -133,15 +133,18 @@ def argparsed_arguments():
 
     return parser.parse_args()
 
-if __name__ == '__main__':
 
+def main():
     parsed_args = argparsed_arguments()
+    main_with_args(pattern=parsed_args.pattern,
+                   filepath=parsed_args.file,
+                   recursive_dir=parsed_args.recursive and (parsed_args.file or './'),
+                   extensions=parsed_args.extensions,
+                   inplace=parsed_args.inplace,
+                   print_list=parsed_args.list,
+                   replace_first=parsed_args.replace_first,
+                   replace_global=parsed_args.replace_global)
 
-    main(pattern=parsed_args.pattern,
-         filepath=parsed_args.file,
-         recursive_dir=parsed_args.recursive and (parsed_args.file or './'),
-         extensions=parsed_args.extensions,
-         inplace=parsed_args.inplace,
-         print_list=parsed_args.list,
-         replace_first=parsed_args.replace_first,
-         replace_global=parsed_args.replace_global)
+
+if __name__ == '__main__':
+    main()
