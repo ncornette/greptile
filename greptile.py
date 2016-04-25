@@ -67,7 +67,7 @@ def replace(pattern, repl, root_dir, *types):
 
 
 def list_files(root_dir, *types):
-    for root, dirs, files in os.walk(root_dir):
+    for root, _, files in os.walk(root_dir):
         for f in files:
             if not types or os.path.splitext(f)[-1] in types:
                 yield os.path.join(root, f)
