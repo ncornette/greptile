@@ -29,7 +29,7 @@ optional arguments:
 
 ### Why fast?
 
-Because it exclusively uses generators, reptile never allocates big lists, it always processes one line in one file at a time. you can do a search on big files and large directories like `/` without memory overhead.
+Because it exclusively uses generators, reptile never allocates big lists, it always processes one line in one file at a time. you can do a search on big files and large directories like `/` recursively without memory overhead.
 
 ### Examples: 
 
