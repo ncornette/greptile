@@ -5,13 +5,13 @@ Fast grep implementation in python, with replace features
 
 ```
 usage: greptile.py [-h] [-v] [-x EXTENSIONS [EXTENSIONS ...]] [-r] [-l] [-i]
-                   [-g REPLACE_GLOBAL] [-f REPLACE_FIRST]
-                   pattern [file]
+                   [-g REPLACE_EXPR] [-f REPLACE_EXPR]
+                   expression [file]
 
 file search and replace with regular expressions
 
 positional arguments:
-  pattern               regular expression
+  expression            regular expression
   file                  file path (or directory if -r is used)
 
 optional arguments:
@@ -23,10 +23,10 @@ optional arguments:
   -r, --recursive       recursively search in path
   -l, --list            list files matching pattern
   -i, --inplace         update the file inplace (with -g or -f)
-  -g REPLACE_GLOBAL, --replace-global REPLACE_GLOBAL
-                        replacement expression
-  -f REPLACE_FIRST, --replace-first REPLACE_FIRST
-                        replacement expression
+  -g REPLACE_EXPR, --replace-global REPLACE_EXPR
+                        global replacement expression
+  -f REPLACE_EXPR, --replace-first REPLACE_EXPR
+                        first occurrence replacement expression
 ```
 
 ### Why fast?
@@ -35,7 +35,7 @@ Because it exclusively uses generators, reptile never allocates big lists, it al
 
 ### Examples: 
 
-Search `import` in ./greptile.py :
+#### Search `import` in ./greptile.py :
 ```bash
 $ ./greptile.py import ./greptile.py
 ```
@@ -46,7 +46,7 @@ import sys
     import argparse
 ```
 
-Recursively search from `~/` lines in python files containing `Copyright` :
+#### Recursively search from `~/` lines in python files containing `Copyright` :
 ```bash
 $ ./greptile.py -x .py -r Copyright ~/
 ```
@@ -60,7 +60,7 @@ $ ./greptile.py -x .py -r Copyright ~/
 ...
 ```
 
-Replacement & easy grouping with python `re.sub` syntax :
+#### Replacement & easy grouping with python `re.sub` syntax :
 ```bash
 $ greptile.py "\[(.*)\]\((.*)\)" README.md -g "<a href=\"\2\">\1</a>" | diff -u README.md -
 ```
@@ -72,5 +72,14 @@ $ greptile.py "\[(.*)\]\((.*)\)" README.md -g "<a href=\"\2\">\1</a>" | diff -u 
 +!<a href="https://github.com/google/agera/blob/master/doc/images/agera.png">Agera</a>
  Reactive Programming for Android
  ================================
+
+```
+### Api: 
+
+```python
+import greptile
+
+# Inplace replacement
+greptile.replace('import', 'export', './', '.py', '.xml', '.java')
 
 ```
