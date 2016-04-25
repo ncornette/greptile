@@ -30,3 +30,26 @@ optional arguments:
 ### Why fast?
 
 Because it exclusively uses generators, reptile never allocates big lists, it always processes one line in one file at a time. you can do a search on big files and large directories like `/`. `reptile.py` without memory overhead.
+
+### Examples: 
+
+Search `import` in ./greptile.py
+```bash
+$ ./greptile.py import ./greptile.py
+import re
+import os
+import sys
+    import argparse
+```
+
+Recursively search from `~/` lines in python files containing `Copyright`
+```bash
+$ ./greptile.py -x .py -r Copyright ~/
+/Users/nic/Library/Android/sdk/platform-tools/systrace/systrace-legacy.py 2:  # Copyright (c) 2011 The Chromium Authors. All rights reserved.
+/Users/nic/Library/Android/sdk/platform-tools/systrace/systrace.py 2:  # Copyright (c) 2011 The Chromium Authors. All rights reserved.
+/Users/nic/Library/Android/sdk/platform-tools/systrace/systrace_agent.py 0:  # Copyright (c) 2015 The Chromium Authors. All rights reserved.
+/Users/nic/Library/Android/sdk/platform-tools/systrace/util.py 0:  # Copyright (c) 2015 The Chromium Authors. All rights reserved.
+/Users/nic/Library/Android/sdk/platform-tools/systrace/agents/__init__.py 0:  # Copyright (c) 2015 The Chromium Authors. All rights reserved.
+/Users/nic/Library/Android/sdk/platform-tools/systrace/agents/atrace_agent.py 0:  # Copyright (c) 2015 The Chromium Authors. All rights reserved.
+...
+```
