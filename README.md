@@ -26,3 +26,7 @@ optional arguments:
   -f REPLACE_FIRST, --replace-first REPLACE_FIRST
                         replacement expression
 ```
+
+### Why fast?
+
+Because it exclusively uses generators, reptile never allocates big lists, it always processes one line in one file at a time. you can do a search on big files and large directories like `/`. `reptile.py` without memory overhead.
