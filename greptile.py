@@ -93,14 +93,11 @@ def sed_i(files, expr, replace_exp, only_first_occurrence=False):
     :param only_first_occurrence: replace only first occurrence per line
     """
     r = _compiled_re(expr)
-    count = only_first_occurrence and 1 or 0
     for f in files:
         with open(f, 'r') as source:
             tmp_f = f + '.pygrep.tmp'
             with open(tmp_f, 'w') as dest:
-                for l in source:
-                    new_l = r.sub(replace_exp, l, count)
-                    dest.write(new_l)
+                sed(source, r, replace_exp, dest, only_first_occurrence)
 
         shutil.copymode(f, tmp_f)
         ori_f = f + '.pygrep.ori'
@@ -138,8 +135,7 @@ def _argv_parsed_arguments():
     import argparse
 
     parser = argparse.ArgumentParser(
-            description='file search and replace with regular expressions',
-            version="1.0")
+            description='file search and replace with regular expressions')
 
     parser.add_argument('-x', '--extensions', nargs='+', default=(),
                         help='restrict search to file extensions (ex: .py .txt .java .xml)')
