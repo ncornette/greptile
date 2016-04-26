@@ -1,6 +1,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/a046f045b39a419b9f31ff1fb324d9a8)](https://www.codacy.com/app/nicolas-cornette/greptile)
 
-# greptile
+# Greptile
 Fast grep implementation in python, with replace features
 
 ```
@@ -35,9 +35,9 @@ Because it exclusively uses generators, reptile never allocates big lists, it al
 
 ### Examples: 
 
-#### Search `import` in ./greptile.py :
+#### Search `"import"` in ./greptile.py :
 ```bash
-$ ./greptile.py import ./greptile.py
+$ ./greptile.py "import" ./greptile.py
 ```
 ```bash
 import re
@@ -48,7 +48,7 @@ import sys
 
 #### Recursively search from `~/` lines in python files containing `Copyright` :
 ```bash
-$ ./greptile.py -x .py -r Copyright ~/
+$ ./greptile.py -x .py -r "Copyright" ~/
 ```
 ```bash
 /Users/nic/Library/Android/sdk/platform-tools/systrace/systrace-legacy.py 2:  # Copyright (c) 2011 The Chromium Authors. All rights reserved.
@@ -79,7 +79,13 @@ $ greptile.py "\[(.*)\]\((.*)\)" README.md -g "<a href=\"\2\">\1</a>" | diff -u 
 ```python
 import greptile
 
-# Inplace replacement
+# Replace "import" by "export" from dir `./`, in all files and these extensions: .py, .xml, .java
 greptile.replace('import', 'export', './', '.py', '.xml', '.java')
+
+# Return filenames of all files containing the text "import" from dir `./` and .py, .xml, .java
+my_list = greptile.grep_rl('import', './', '.py', '.xml', '.java')
+
+# same as calling replace()
+greptile.sed_i(my_list, 'import', 'export')
 
 ```
