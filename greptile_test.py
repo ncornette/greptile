@@ -1,4 +1,11 @@
-import StringIO
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+try:
+    import StringIO as io
+except ImportError:
+    import io
+
 import unittest
 import greptile
 import re
@@ -18,7 +25,7 @@ class MyTestCase(unittest.TestCase):
                 [l for l in greptile._matching_lines(re.compile('Libraries'), './test/LICENSE.txt')])
 
     def test_matching_sed(self):
-        sio = StringIO.StringIO()
+        sio = io.StringIO()
         with open('./test/LICENSE.txt', 'r') as f:
             greptile.sed(f, 'Material', 'Spam', sio)
 
