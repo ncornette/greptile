@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/ncornette/greptile.svg?branch=master)](https://travis-ci.org/ncornette/greptile) 
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/a046f045b39a419b9f31ff1fb324d9a8)](https://www.codacy.com/app/nicolas-cornette/greptile) 
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/a046f045b39a419b9f31ff1fb324d9a8)](https://www.codacy.com/app/nicolas-cornette/greptile)
+[![codecov](https://codecov.io/gh/ncornette/greptile/branch/master/graph/badge.svg)](https://codecov.io/gh/ncornette/greptile)
+
 
 # Greptile
 Fast grep implementation in python, with replace features
