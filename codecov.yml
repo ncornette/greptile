@@ -1,9 +1,5 @@
-codecov:
-  token: f3d031b3-1769-4d2e-96f4-8412d594cdb8
-  branch: master
-
 coverage:
   precision: 2
   round: down
-  range: "70...100"
+  range: "0...100"
   

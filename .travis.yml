@@ -8,9 +8,12 @@ python:
   # does not have headers provided, please ask https://launchpad.net/~pypy/+archive/ppa
   # maintainers to fix their pypy-dev package.
   - "pypy"
+
 # command to install dependencies
 install:
-  - pip install .
-#  - pip install -r requirements.txt
+  - pip install . codecov
+
 # command to run tests
 script: ./greptile_test.py
+
+after_success: python -m coverage run --source=greptile.py greptile_test.py && codecov
