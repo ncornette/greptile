@@ -131,7 +131,7 @@ def replace(expr, replace_exp, root_dir, *dot_extensions):
 # ### COMMAND LINE INTERFACE ####
 
 
-def _argv_parsed_arguments():
+def _argv_parsed_arguments():  # pragma: no cover
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -139,7 +139,7 @@ def _argv_parsed_arguments():
 
     parser.add_argument('-x', '--extensions', nargs='+', default=(),
                         help='restrict search to file extensions (ex: .py .txt .java .xml)')
-    parser.add_argument('-r', '--recursive', action='store_true',
+    parser.add_argument('-r', '--recursive', action='store_true', default=False,
                         help='recursively search in path')
     parser.add_argument('-l', '--list', action='store_true',
                         help='list files matching pattern')
@@ -158,7 +158,7 @@ def _argv_parsed_arguments():
 
 
 def _process_args(expression, filepath=None, recursive_dir=None, extensions=(), inplace=False,
-                  print_list=False, replace_first=None, replace_global=None):
+                  print_list=False, replace_first=None, replace_global=None):  # pragma: no cover
 
     compiled_expr = re.compile(expression)
     if recursive_dir:
@@ -193,9 +193,8 @@ def _process_args(expression, filepath=None, recursive_dir=None, extensions=(), 
                     print(l, end=' ')
 
 
-def main():
+def main():  # pragma: no cover
     parsed_args = _argv_parsed_arguments()
-
     _process_args(expression=parsed_args.expression,
                   filepath=parsed_args.file,
                   recursive_dir=parsed_args.recursive and (parsed_args.file or './'),
@@ -206,5 +205,5 @@ def main():
                   replace_global=parsed_args.replace_global)
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
