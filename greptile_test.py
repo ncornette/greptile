@@ -46,11 +46,12 @@ class MyTestCase(unittest.TestCase):
         shutil.copy('./test/LICENSE.txt', license_copy)
         try:
             greptile.replace('Material', 'Spam', './test', '.tmp')
-            with open('./test/LICENSE.txt', 'r') as f, open(license_copy, 'r') as f2 :
-                self.assertEqual([
-                    '-  3. Object Code Incorporating Material from Library Header Files.\n',
-                    '+  3. Object Code Incorporating Spam from Library Header Files.\n'],
-                        [l for l in difflib.unified_diff(f.readlines(), f2.readlines())][6:8])
+            with open('./test/LICENSE.txt', 'r') as f:
+                with open(license_copy, 'r') as f2:
+                    self.assertEqual([
+                        '-  3. Object Code Incorporating Material from Library Header Files.\n',
+                        '+  3. Object Code Incorporating Spam from Library Header Files.\n'],
+                            [l for l in difflib.unified_diff(f.readlines(), f2.readlines())][6:8])
         finally:
             os.remove(license_copy)
 
